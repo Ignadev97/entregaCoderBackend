@@ -1,0 +1,225 @@
+paths:
+  /api/cart/{cid}:
+    get:
+      summary: Obtiene carrito de la base de datos
+      tags:
+        - Carritos
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se está solicitando
+        schema:
+          type: object
+      responses:
+        "200":
+          description: El carrito fue obtenido OK desde la DB
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Cart'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cart:
+    post:
+      summary: Crea un nuevo carrito
+      tags:
+        - Carritos
+      requestBody:
+        description: Datos del carrito a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCartRequest'
+      responses:
+        "200":
+          description: El carrito fue creado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartCreatedResponse'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        carrito:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: "660a2df660de54887af3a385"
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "6605d823eb87395f832e1f44"
+                      title:
+                        type: string
+                        example: "Papas fritas"
+                      description:
+                        type: string
+                        example: "Papas fritas crujientes"
+                      price:
+                        type: number
+                        example: 800
+                      code:
+                        type: number
+                        example: 8272
+                      stock:
+                        type: string
+                        example: "65 unidades"
+                  _id:
+                    type: string
+                    example: "660a2df660de54887af3a386"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2024-04-01T03:45:58.635Z"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2024-04-01T03:45:58.635Z"
+            __v:
+              type: number
+              example: 0
+    CartResponse:
+      type: object
+      properties:
+        carrito:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: "660a2df660de54887af3a385"
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "6605d823eb87395f832e1f44"
+                      title:
+                        type: string
+                        example: "Papas fritas"
+                      description:
+                        type: string
+                        example: "Papas fritas crujientes"
+                      price:
+                        type: number
+                        example: 800
+                      code:
+                        type: number
+                        example: 8272
+                      stock:
+                        type: string
+                        example: "65 unidades"
+                  _id:
+                    type: string
+                    example: "660a2df660de54887af3a386"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2024-04-01T03:45:58.635Z"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2024-04-01T03:45:58.635Z"
+            __v:
+              type: number
+              example: 0
+    NewCartRequest:
+      type: object
+      properties:
+        carrito:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: object
+      example:
+        carrito:
+          products: []
+    CartCreatedResponse:
+      type: object
+      properties:
+        mensaje:
+          type: string
+          example: "el carrito fue creado con éxito"
+        carritoCreado:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: "660a2df660de54887af3a385"
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "6605d823eb87395f832e1f44"
+                      title:
+                        type: string
+                        example: "Papas fritas"
+                      description:
+                        type: string
+                        example: "Papas fritas crujientes"
+                      price:
+                        type: number
+                        example: 800
+                      code:
+                        type: number
+                        example: 8272
+                      stock:
+                        type: string
+                        example: "65 unidades"
+                  _id:
+                    type: string
+                    example: "660a2df660de54887af3a386"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2024-04-01T03:45:58.635Z"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2024-04-01T03:45:58.635Z"
+            __v:
+              type: number
+              example: 0
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "no se pudo leer un carrito con el id: {id}"
+        detalle:
+          type: string
+          example: "Error details here"

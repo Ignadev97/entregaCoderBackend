@@ -1,0 +1,177 @@
+paths:
+  /api/products:
+    get:
+      summary: Obtiene una lista paginada de productos
+      tags:
+        - Products
+      parameters:
+        - name: pagina
+          in: query
+          required: false
+          description: Número de página para la paginación
+          schema:
+            type: integer
+            default: 1
+        - name: limite
+          in: query
+          required: false
+          description: Cantidad de productos por página
+          schema:
+            type: integer
+            default: 5
+        - name: title
+          in: query
+          required: false
+          description: Título del producto para filtrar
+          schema:
+            type: string
+        - name: description
+          in: query
+          required: false
+          description: Descripción del producto para filtrar
+          schema:
+            type: string
+        - name: sort
+          in: query
+          required: false
+          description: Orden de los productos por precio (ascendente o descendente)
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+      responses:
+        "200":
+          description: Lista de productos obtenida con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Agrega un nuevo producto
+      tags:
+        - Products
+      requestBody:
+        description: Datos del producto a agregar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProduct'
+      responses:
+        "200":
+          description: Producto agregado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        "400":
+          description: Error en los datos de entrada o producto ya existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ProductListResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        totalPages:
+          type: integer
+          example: 5
+        prevPage:
+          type: integer
+          example: 1
+        nextPage:
+          type: integer
+          example: 3
+        page:
+          type: integer
+          example: 2
+        hasNextPage:
+          type: boolean
+          example: true
+        hasPrevPage:
+          type: boolean
+          example: true
+        prevLink:
+          type: string
+          nullable: true
+          example: "/api/products?pagina=1"
+        nextLink:
+          type: string
+          nullable: true
+          example: "/api/products?pagina=3"
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "6605d823eb87395f832e1f44"
+        title:
+          type: string
+          example: "Papas fritas"
+        description:
+          type: string
+          example: "Papas fritas crujientes"
+        price:
+          type: number
+          example: 800
+        code:
+          type: number
+          example: 8272
+        stock:
+          type: string
+          example: "65 unidades"
+    NewProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Papas fritas"
+        description:
+          type: string
+          example: "Papas fritas crujientes"
+        price:
+          type: number
+          example: 800
+        code:
+          type: number
+          example: 8272
+        stock:
+          type: string
+          example: "65 unidades"
+    ProductResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "se agregó el producto con éxito"
+        payload:
+          $ref: '#/components/schemas/Product'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Error interno del servidor"
+        detalle:
+          type: string
+          example: "Descripción del error"

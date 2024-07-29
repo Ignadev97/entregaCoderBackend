@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div class="divBody">
+      <h1>LISTA DE PRODUCTOS</h1>
+      <ul>
+        {{#each products}}
+          <li>
+            {{title}}
+            <button class="buttonAgregarACarrito" data-id="{{_id}}">
+              Agregar al carrito
+            </button>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="divButtons">
+      <a href="/home?pagina=1">Página 1</a>
+      {{#if hasPrevPage}}
+        <a href="/home?pagina={{prevPage}}">Página anterior</a>
+      {{/if}}
+      {{#if hasNextPage}}
+        <a href="/home?pagina={{nextPage}}">Página siguiente</a>
+      {{/if}}
+      <a href="/home?pagina={{totalPages}}">Última página</a>
+    </div>
+    <div class="divButtonCarrito"><button class="miCarrito">
+        Mi carrito
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-cart-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+          />
+        </svg></button></div>
+        <a href="/">Volver al inicio</a>
+  </body>
+  <script src="/js/products.js"></script>
+</html>

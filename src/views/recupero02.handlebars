@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Reestablezcamos la contraseña!</h2>
+
+    <form class="formulario" action="submit">
+        <input type="hidden" name="token" value="<%= token %>" id="token">
+        <div>
+            <label for="contraseña1"> Nueva contraseña </label>
+            <input type="password" name="" id="contraseña1">
+        </div>
+        <div>
+            <label for="contraseña2"> Repetir contraseña </label>
+            <input type="password" name="" id="contraseña2">
+        </div>
+        <input type="submit" value="Cambiar contraseña" name="" id="submit">
+    </form>
+</body>
+<script src="/js/recupero02.js"></script>
+</html>

@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="divBody">
+
+      <form class="formulario" action="/api/sessions/login" method="post">
+
+        <div id="mensaje"></div>
+
+        <input type="email" name="email" placeholder="email" id="email" />
+        <input
+          type="password"
+          name="password"
+          placeholder="contraseña"
+          id="password"
+        />
+        <br />
+        <input class="inputSubmit" type="submit" value="Ingresar" id="submit" />
+        <br />
+
+      </form>
+      <a href="/recupero01">Olvidé mi contraseña</a>
+      <a href="/api/sessions/github">Ingreso con Github</a>
+      <a href="/">Volver al inicio</a>
+    </div>
+  </body>
+  <script src="/js/login.js"></script>
+</html>
