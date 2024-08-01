@@ -137,6 +137,10 @@ button {
     transition: background-color 0.3s ease, transform 0.3s ease
 }
 
+.btnEliminarDeCarrito {
+    background-color: red;
+}
+
 button:hover {
     color: #333;
     background-color: #00b300;

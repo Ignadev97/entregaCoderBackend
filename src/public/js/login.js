@@ -20,12 +20,17 @@ btnSubmit.addEventListener("click", async(e)=>{
     })
     let status=resultado.status
     let datos=await resultado.json()
+
+    let cartId = datos.usuario.cart
+
     if(status==200){
         divMensaje.style.color="green"
         divMensaje.innerHTML=datos.message
+        window.location.href = `/home?cartId=${cartId}`
     }else{
         divMensaje.style.color="red"
-        divMensaje.innerHTML=datos.error
+        divMensaje.innerHTML=datos.message
     }
+
 
 })

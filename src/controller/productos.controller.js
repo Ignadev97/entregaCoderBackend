@@ -65,9 +65,9 @@ export default class productController {
         };
 
         res
-            .setHeader("Content-Type", "text/html")
+            .setHeader("Content-Type", "application/json")
             .status(200)
-            .render("home", resultado);
+            .json(resultado);
     } catch (err) {
         logger.error("Error al obtener productos:", err);
         res.status(500).json({ error: "Error interno del servidor" });

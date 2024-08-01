@@ -4,7 +4,12 @@ import authController from "../controller/auth.controller.js";
 const router = express.Router();
 
 //endpoint para manejar el renderizado de la página home | products
-router.get("/home", productController.getProducts);
+router.get("/home", (req, res) => {
+  res
+  .setHeader("Content-Type", "text/html")
+  .status(200)
+  .render("home");
+} );
 
 router.get("/chat", (req, res) => {
   res.setHeader("Content-Type", "text/html").status(200).render("chat");

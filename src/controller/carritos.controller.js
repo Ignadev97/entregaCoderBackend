@@ -1,5 +1,11 @@
-import mongoose from "mongoose";
+import mongoose  from "mongoose";
 import { carritoService } from "../services/carts.services.js";
+import { userService } from "../services/users.services.js";
+import { compraMongoDao } from "../dao/mongo/comprasMongoDAO.js";
+import { logger } from "../utils/utils.js";
+import { enviarMail } from "../utils/mailer.js";
+
+const ObjectId = mongoose.Types.ObjectId
 
 export default class cartController {
   //formato a pasar {"carrito":{"products":[]}}
@@ -22,24 +28,23 @@ export default class cartController {
 
   static addProductsToCart = async (req, res) => {
     try {
-      let { cid } = req.params;
-      let { products } = req.body;
+      let { cid } = req.params       
+      let { productId } = req.body;
+      
+      
 
-      if (!products) {
+      if (!productId) {
         return res.status(400).json({
           message:
-            "el formato del producto no es el correcto, por favor verifique.",
+            "No se ha proporcionado un id válido, por favor verificar",
         });
       }
 
-      let productosAgregados = await carritoService.agregarProductoACarrito(
-        cid,
-        products
-      );
-
-      res.status(200).json({
-        message: "se agregaron los productos con éxito",
-        productosAgregados,
+     let productosAgregados = carritoService.agregarProductoACarrito(cid, productId)
+          
+            
+        res.status(200).json({
+        message: `se agregó el producto con id:${productId} correctamente`,
       });
     } catch (err) {
       logger.error("Error al agregar productos al carrito:", err);
@@ -72,26 +77,39 @@ export default class cartController {
 
       if (!carrito) {
         return res
-          .status(400)
-          .json({ error: "el carrito no ha sido encontrado" });
+        .status(400)
+        .json({ error: "el carrito no ha sido encontrado" });
       }
 
-      const productId = new mongoose.Types.ObjectId(pid);
+      
+      let products = carrito.products
 
-      const productIndex = carrito.products.findIndex((product) =>
-        product._id.equals(productId)
-      );
+      let productId = new ObjectId(pid)
 
-      if (productIndex === -1) {
-        return res.status(400).json({
-          error: "el producto no se encuentra en el carrito",
-          carrito,
-        });
-      }
+      console.log(productId)
 
-      carrito.products.splice(productIndex, 1);
+      const productIndex = products.filter((item) => {
+        
+        item.product.equals(productId)
+      
+      
+      });
 
-      await carrito.save();
+
+
+
+      console.log(productIndex)
+
+      // if (productIndex === -1) {
+      //   return res.status(400).json({
+      //     error: "el producto no se encuentra en el carrito",
+      //     carrito,
+      //   });
+      // }
+
+      // carrito.products.splice(productIndex, 1);
+
+      // await carrito.save();
 
       res
         .status(200)
@@ -149,6 +167,53 @@ export default class cartController {
         .json({ error: "Error del servidor", detalle: err.message });
     }
   };
+
+  static realizarCompra = async (req, res) => {
+    try {
+      const {cid, uid} = req.params 
+
+      let carrito = await carritoService.obtenerCarritosPorId(cid)
+      let user = await userService.obtenerUsuarioBy(uid)
+
+      if (!carrito) {
+        return res
+          .status(400)
+          .json({ error: "el carrito no ha sido encontrado" });
+      }
+
+      let productosComprados = carrito.products
+
+      productosComprados.map(item => ({
+        product: item.product._id,
+        cantidad: item.product.quantity
+      }))
+
+      let total = productosComprados.reduce((acc, item) => acc + (item.product.price * item.product.quantity), 0);
+
+      let nuevaCompra = await compraMongoDao.addCompra({
+        carritoId: cid, 
+        userId: uid,
+        productos: productosComprados,
+        total: total
+      })
+
+      let asunto = 'Compra realizada en tiendaNacho'
+
+      let mensaje = `gracias por realizar la compra este es el id de la compra: ${nuevaCompra._id}`
+
+      await enviarMail(user.email, asunto, mensaje)
+
+      carrito.products = []
+
+      res.status(200).json({mensaje: 'la compra fue realizada con éxito!'})
+
+    } catch (err) {
+      logger.error("Error al eliminar el carrito:", err);
+      res
+        .status(500)
+        .json({ error: "Error del servidor", detalle: err.message });
+    }
+  }
 
   static deleteCart = async (req, res) => {
     try {

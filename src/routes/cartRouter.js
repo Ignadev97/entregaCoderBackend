@@ -1,5 +1,7 @@
 import express from "express";
 import cartController from "../controller/carritos.controller.js";
+import passport from "passport";
+import authorize from "../middlewares/authorize.js";
 
 const router = express.Router();
 
@@ -10,7 +12,8 @@ router.post("/", cartController.addCart);
 //endpoint para agregar productos al carrito
 //formato a pasar en body: {"products":[{"product": "id del producto ya ingresado en db.products"}]}
 
-router.post("/:cid", cartController.addProductsToCart);
+router.post("/:cid",passport.authenticate("jwt", { session: false }),
+authorize("user"), cartController.addProductsToCart);
 
 //Obtener carrito con el id
 router.get("/:id", cartController.getCartById);
@@ -23,5 +26,8 @@ router.put("/:cid/products/:pid", cartController.updateQuantity);
 
 //endpoint para eliminar TODOS los productos del carrito
 router.delete("/:cid", cartController.deleteCart);
+
+//endpoint para realizar la compra
+router.post('/:cid/comprar', cartController.realizarCompra)
 
 export default router;

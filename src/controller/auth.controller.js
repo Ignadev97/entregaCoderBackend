@@ -11,7 +11,7 @@ export default class authController {
   //registro
   static register = async (req, res) => {
     let { firstName, lastName, email, password, role } = req.body;
-    if (!firstName || !email || !lastName) {
+    if (!firstName || !email || !lastName || !password) {
       return res
         .status(400)
         .json({ message: "faltan datos. Por favor complete todos los campos" });
@@ -95,7 +95,7 @@ export default class authController {
           signed: true,
           httpOnly: true,
         })
-        .json({ message: "usuario logueado correctamente", usuario });
+        .json({ message: "login correcto!", usuario });
     } catch (err) {
       return res
         .status(500)

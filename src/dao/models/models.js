@@ -8,6 +8,7 @@ const productColl = "products"
 const cartsColl = "carts"
 const messagesColl = "messages"
 const userColl = 'users'
+const compraColl = 'compras'
 
 
 const productSchema = new mongoose.Schema(
@@ -17,7 +18,7 @@ const productSchema = new mongoose.Schema(
         price: Number, 
         code: {
             type: Number, 
-            required: true, 
+            required: true,
             unique: true
         },
         stock: String,
@@ -82,6 +83,29 @@ const usuarioSchema = new mongoose.Schema (
     }
 )
 
+const compraSchema = new mongoose.Schema (
+    {
+        carritoId: {
+            type:mongoose.Schema.Types.ObjectId,
+            required:true
+        },
+        userId: {
+            type:mongoose.Schema.Types.ObjectId,
+            required:true
+        },
+        productos: [
+            {
+                product: mongoose.Schema.Types.ObjectId,
+                cantidad: Number
+            }
+        ],
+        total: {
+            type: Number,
+            required:true
+        }
+    }
+)
+
 
 
 
@@ -89,3 +113,4 @@ export const modeloProducts = mongoose.model(productColl, productSchema)
 export const modeloCarts = mongoose.model(cartsColl, cartsSchema)
 export const modeloMessages = mongoose.model(messagesColl, messagesSchema)
 export const modeloUsers = mongoose.model(userColl, usuarioSchema)
+export const modeloCompra = mongoose.model(compraColl, compraSchema)

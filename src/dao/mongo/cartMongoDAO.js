@@ -17,13 +17,30 @@ export class cartMongoDAO {
     }
   };
 
-  addProductToCart = async (idCart, products) => {
+  addProductToCart = async (cid, productId) => {
     try {
-      const carrito = await this.getCartProductsById(idCart);
+      const carrito = await this.getCartProductsById(cid);
 
-      const productos = products;
+      let productoExistenteEnCarrito = carrito.products.find(item => item.product.equals(productId))
+      
+      if (productoExistenteEnCarrito) {
+        // Si el producto ya está en el carrito, solo actualiza la cantidad
+        carrito.products = carrito.products.map(item =>
+          item.product.equals(productId)
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // Si el producto no está en el carrito, agrégalo
+        carrito.products = [
+          ...carrito.products,
+          { product: productId, quantity: 1 }
+        ];
+      }
 
-      carrito.products = productos;
+      
+      const carritoActualizado = await modeloCarts.updateOne({_id:cid}, carrito)
+
       return carrito;
     } catch (err) {
       console.log("error inesperado. Detalle:", err.message);
