@@ -2,15 +2,17 @@ import mongoose from "mongoose";
 import { productoService } from "../services/products.services.js";
 import { fakerES_MX as faker } from "@faker-js/faker";
 import config from "../config/config.js";
+import { logger } from "../utils/utils.js";
 
 export default class productController {
   static getProducts = async (req, res) => {
     try {
-        let { pagina, limite, title, description, sort } = req.query;
+        let { pagina, limit, title, description, sort } = req.query;
+        
 
         //manejo de limit
-        if (!limite) {
-            limite = 5;
+        if (!limit) {
+            limit = 5;
         }
 
         //manejo de pagina
@@ -25,7 +27,7 @@ export default class productController {
             query.title = title;
         }
         if (description) {
-            query.description = description;
+            query.description = { $regex: description, $options: 'i' }
         }
 
         // manejo de orden
@@ -35,9 +37,10 @@ export default class productController {
             sortOptions = { price: sort == "asc" ? 1 : -1 };
         }
 
-        const parametrosPaginate = { query, limite, pagina };
+        const parametrosPaginate = { query, limit, pagina };
 
         const resultadoPaginate = await productoService.obtenerProductos(parametrosPaginate);
+
 
         let {
             products,
@@ -227,6 +230,8 @@ static deleteProduct = async (req, res) => {
     let userId = req.user._id;
     let userRole = req.user.role;
   
+    
+
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.setHeader("Content-Type", "application/json");
       return res.status(400).json({ error: `Id invalido` });

@@ -1,6 +1,7 @@
 import mongoose  from "mongoose";
 import { carritoService } from "../services/carts.services.js";
 import { userService } from "../services/users.services.js";
+import { productoService } from "../services/products.services.js";
 import { compraMongoDao } from "../dao/mongo/comprasMongoDAO.js";
 import { logger } from "../utils/utils.js";
 import { enviarMail } from "../utils/mailer.js";
@@ -30,19 +31,35 @@ export default class cartController {
     try {
       let { cid } = req.params       
       let { productId } = req.body;
-      
-      
 
       if (!productId) {
         return res.status(400).json({
           message:
-            "No se ha proporcionado un id válido, por favor verificar",
+            "no se ha proporcionado un id de producto válido. Por favor verificar.",
         });
       }
+      
+      if(!cid) {
+        return res.status(400).json({
+          message:
+            "no se ha proporcionado un id de carrito válido. Por favor verificar.",
+        });
+      }
+      
+      
+      let productoValidado = await productoService.obtenerProductoPorId(productId)
 
-     let productosAgregados = carritoService.agregarProductoACarrito(cid, productId)
-          
-            
+      
+      if(!productoValidado){
+        return res.status(404).json({
+          message:
+            `el producto con id ${productId}, no se encuentra disponible en la base de datos. Por favor verifique el id`,
+        });
+      }
+      
+    let carritoActualizado = await carritoService.agregarProductosACarrito(cid, productId)
+
+                    
         res.status(200).json({
         message: `se agregó el producto con id:${productId} correctamente`,
       });
@@ -77,39 +94,26 @@ export default class cartController {
 
       if (!carrito) {
         return res
-        .status(400)
+        .status(404)
         .json({ error: "el carrito no ha sido encontrado" });
       }
 
-      
       let products = carrito.products
 
-      let productId = new ObjectId(pid)
-
-      console.log(productId)
-
-      const productIndex = products.filter((item) => {
-        
-        item.product.equals(productId)
-      
-      
+      let productoEnCarrito = products.findIndex((item) => {
+          return item.product.equals(pid)
       });
 
 
+      if(productoEnCarrito === -1){
+        return res
+        .status(404)
+        .json({ error: "el producto no se encontró en el carrito, verifique id" });
+      }
 
+      products.splice(productoEnCarrito, 1);
 
-      console.log(productIndex)
-
-      // if (productIndex === -1) {
-      //   return res.status(400).json({
-      //     error: "el producto no se encuentra en el carrito",
-      //     carrito,
-      //   });
-      // }
-
-      // carrito.products.splice(productIndex, 1);
-
-      // await carrito.save();
+      await carrito.save();
 
       res
         .status(200)
@@ -215,7 +219,7 @@ export default class cartController {
     }
   }
 
-  static deleteCart = async (req, res) => {
+  static clearCart = async (req, res) => {
     try {
       const { cid } = req.params;
 
@@ -233,7 +237,7 @@ export default class cartController {
 
       res
         .status(200)
-        .json({ message: "producto eliminado con éxito", carrito });
+        .json({ message: "¡los productso del carrito se removieron con éxito!", carrito });
     } catch (err) {
       logger.error("Error al eliminar el carrito:", err);
       res

@@ -1,1 +1,97 @@
 
+{
+  stack: 'ReferenceError: logger is not defined\n' +
+    '    at getProducts (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/productos.controller.js:74:9)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at Route.dispatch (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:119:3)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at /Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:284:15\n' +
+    '    at Function.process_params (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:346:12)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:280:10)\n' +
+    '    at Function.handle (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:175:3)\n' +
+    '    at router (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:47:12)',
+  level: 'error',
+  message: 'Promesa no manejada: logger is not defined',
+  timestamp: '2024-08-01T20:18:40.956Z'
+}
+{
+  stack: 'ReferenceError: logger is not defined\n' +
+    '    at getProducts (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/productos.controller.js:74:9)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at Route.dispatch (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:119:3)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at /Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:284:15\n' +
+    '    at Function.process_params (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:346:12)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:280:10)\n' +
+    '    at Function.handle (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:175:3)\n' +
+    '    at router (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:47:12)',
+  level: 'error',
+  message: 'Promesa no manejada: logger is not defined',
+  timestamp: '2024-08-01T20:19:08.119Z'
+}
+{
+  level: 'error',
+  message: 'Error al obtener productos: limite is not defined',
+  stack: 'ReferenceError: limite is not defined\n' +
+    '    at getProducts (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/productos.controller.js:41:45)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at Route.dispatch (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:119:3)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at /Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:284:15\n' +
+    '    at Function.process_params (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:346:12)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:280:10)\n' +
+    '    at Function.handle (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:175:3)\n' +
+    '    at router (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/index.js:47:12)',
+  timestamp: '2024-08-01T20:19:55.298Z'
+}
+{
+  level: 'error',
+  message: "Error al eliminar producto por ID: Cannot read properties of undefined (reading 'equals')",
+  stack: "TypeError: Cannot read properties of undefined (reading 'equals')\n" +
+    '    at deleteProduct (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/productos.controller.js:246:52)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-02T02:15:00.483Z'
+}
+{
+  level: 'error',
+  message: "Error al eliminar producto por ID: Cannot read properties of undefined (reading 'equals')",
+  stack: "TypeError: Cannot read properties of undefined (reading 'equals')\n" +
+    '    at deleteProduct (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/productos.controller.js:248:52)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-02T02:16:10.857Z'
+}
+{
+  level: 'error',
+  message: 'Error al agregar productos al carrito: product is not defined',
+  stack: 'ReferenceError: product is not defined\n' +
+    '    at addProductsToCart (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:36:7)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at file:///Users/nachorfs/Desktop/pruebaCoder%20/src/middlewares/authorize.js:23:5\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at complete (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/middleware/authenticate.js:280:13)\n' +
+    '    at /Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/middleware/authenticate.js:287:15\n' +
+    '    at pass (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/authenticator.js:446:14)\n' +
+    '    at Authenticator.transformAuthInfo (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/authenticator.js:468:5)',
+  timestamp: '2024-08-02T15:50:24.018Z'
+}
+{
+  level: 'error',
+  message: 'Error al agregar productos al carrito: product is not defined',
+  stack: 'ReferenceError: product is not defined\n' +
+    '    at addProductsToCart (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:42:75)\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at file:///Users/nachorfs/Desktop/pruebaCoder%20/src/middlewares/authorize.js:23:5\n' +
+    '    at Layer.handle [as handle_request] (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/router/route.js:149:13)\n' +
+    '    at complete (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/middleware/authenticate.js:280:13)\n' +
+    '    at /Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/middleware/authenticate.js:287:15\n' +
+    '    at pass (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/authenticator.js:446:14)\n' +
+    '    at Authenticator.transformAuthInfo (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/authenticator.js:468:5)',
+  timestamp: '2024-08-02T15:54:38.087Z'
+}

@@ -39,10 +39,12 @@ productSchema.plugin(paginate);
 const cartsSchema = new mongoose.Schema(
     {
       products: {type:[
-        {product: {
+        {
+            product: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: productColl
-        }}
+            ref: productColl},
+            quantity: Number
+        }
       ]}
     },
     {

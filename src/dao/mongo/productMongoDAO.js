@@ -11,7 +11,7 @@ export class productMongoDAO {
 
   getProducts = async (parametrosPaginate) => {
     try {
-      let { query, limite, pagina } = parametrosPaginate;
+      let { query, limit, pagina } = parametrosPaginate;
 
       let {
         docs: products,
@@ -22,7 +22,7 @@ export class productMongoDAO {
         nextPage,
         totalPages,
       } = await modeloProducts.paginate(query, {
-        limit: limite,
+        limit: limit,
         page: pagina,
         lean: true,
       });

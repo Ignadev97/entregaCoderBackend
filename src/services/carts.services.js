@@ -22,10 +22,9 @@ class CartServices {
     }
   }
 
-  async agregarProductoACarrito(cid, productId) {
+  async agregarProductosACarrito(cid, pid) {
     try {
-      // console.log(idCart,productos)
-      return await this.dao.addProductToCart(cid, productId);
+      return await this.dao.addProductToCart(cid,pid);
     } catch (error) {
       console.error("Error al obtener carrito por ID:", error);
     }
