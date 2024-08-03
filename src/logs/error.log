@@ -95,3 +95,104 @@
     '    at Authenticator.transformAuthInfo (/Users/nachorfs/Desktop/pruebaCoder /node_modules/passport/lib/authenticator.js:468:5)',
   timestamp: '2024-08-02T15:54:38.087Z'
 }
+{
+  level: 'error',
+  message: 'Error al eliminar el carrito: compraMongoDao.addCompra is not a function',
+  stack: 'TypeError: compraMongoDao.addCompra is not a function\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:197:46)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T02:39:50.156Z'
+}
+{
+  level: 'error',
+  message: "Error al eliminar el carrito: Cannot read properties of undefined (reading '_id')",
+  stack: "TypeError: Cannot read properties of undefined (reading '_id')\n" +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:206:95)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T02:42:13.756Z'
+}
+{
+  level: 'error',
+  message: 'Error al eliminar el carrito: productosComprados is not defined',
+  stack: 'ReferenceError: productosComprados is not defined\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:203:19)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:00:43.818Z'
+}
+{
+  level: 'error',
+  message: 'Error al realizar la compra: carritos is not defined',
+  stack: 'ReferenceError: carritos is not defined\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:203:19)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:01:47.559Z'
+}
+{
+  level: 'error',
+  message: 'Error al realizar la compra: productosComprados is not defined',
+  stack: 'ReferenceError: productosComprados is not defined\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:209:22)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:11:43.901Z'
+}
+{
+  level: 'error',
+  message: "Error al eliminar el carrito: Cannot destructure property 'cid' of 'req.params' as it is undefined.",
+  stack: "TypeError: Cannot destructure property 'cid' of 'req.params' as it is undefined.\n" +
+    '    at cartController.clearCart (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:237:15)\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:222:18)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:17:23.031Z'
+}
+{
+  level: 'error',
+  message: "Error al realizar la compra: Cannot read properties of undefined (reading 'status')",
+  stack: "TypeError: Cannot read properties of undefined (reading 'status')\n" +
+    '    at cartController.clearCart (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:257:10)\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:222:18)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:17:23.033Z'
+}
+{
+  level: 'error',
+  message: "Error al eliminar el carrito: Cannot destructure property 'cid' of 'req.params' as it is undefined.",
+  stack: "TypeError: Cannot destructure property 'cid' of 'req.params' as it is undefined.\n" +
+    '    at cartController.clearCart (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:237:15)\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:222:18)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:29:45.402Z'
+}
+{
+  level: 'error',
+  message: "Error al realizar la compra: Cannot read properties of undefined (reading 'status')",
+  stack: "TypeError: Cannot read properties of undefined (reading 'status')\n" +
+    '    at cartController.clearCart (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:257:10)\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:222:18)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:29:45.404Z'
+}
+{
+  code: 'ERR_HTTP_HEADERS_SENT',
+  level: 'error',
+  message: 'Error al realizar la compra: Cannot set headers after they are sent to the client',
+  stack: 'Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n' +
+    '    at ServerResponse.setHeader (node:_http_outgoing:703:11)\n' +
+    '    at ServerResponse.header (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/response.js:795:10)\n' +
+    '    at ServerResponse.send (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/response.js:175:12)\n' +
+    '    at ServerResponse.json (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/response.js:279:15)\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:225:23)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  timestamp: '2024-08-03T03:34:59.452Z'
+}
+{
+  stack: 'Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n' +
+    '    at ServerResponse.setHeader (node:_http_outgoing:703:11)\n' +
+    '    at ServerResponse.header (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/response.js:795:10)\n' +
+    '    at ServerResponse.send (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/response.js:175:12)\n' +
+    '    at ServerResponse.json (/Users/nachorfs/Desktop/pruebaCoder /node_modules/express/lib/response.js:279:15)\n' +
+    '    at realizarCompra (file:///Users/nachorfs/Desktop/pruebaCoder%20/src/controller/carritos.controller.js:231:10)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+  level: 'error',
+  message: 'Promesa no manejada: Cannot set headers after they are sent to the client',
+  timestamp: '2024-08-03T03:34:59.455Z'
+}

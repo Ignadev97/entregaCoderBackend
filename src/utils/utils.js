@@ -3,6 +3,13 @@ import {dirname} from 'path'
 import bcrypt from 'bcrypt'
 import winston from 'winston'
 
+// funcion para limpiar carrito 
+
+export let limpiarCarrito = async ( carrito ) => {
+    carrito.products.splice(0, carrito.products.length);
+
+      await carrito.save();
+}
 
 //config dirname
 const __filename = fileURLToPath(import.meta.url);

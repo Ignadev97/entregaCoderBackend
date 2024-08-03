@@ -26,10 +26,7 @@ authorize(['admin', 'premium', 'user']), cartController.deleteProductFromCart);
 router.delete("/:cid", passport.authenticate("jwt", { session: false }),
 authorize(['admin', 'premium', 'user']), cartController.clearCart);
 
-//endpoint que actualiza la prop quantity solamente del producto selecionado
-router.put("/:cid/products/:pid", cartController.updateQuantity);
-
 //endpoint para realizar la compra
-router.post('/:cid/comprar',  cartController.realizarCompra)
+router.post('/:uid/comprar/:cid',  cartController.realizarCompra)
 
 export default router;

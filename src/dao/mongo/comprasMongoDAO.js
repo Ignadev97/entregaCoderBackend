@@ -1,6 +1,6 @@
 import { modeloCompra } from "../models/models.js";
 
-export class compraMongoDao {  
+class compraMongoDao {  
     addCompra = async ( compra ) => {
         try {
             return await modeloCompra.create(compra)
@@ -9,3 +9,5 @@ export class compraMongoDao {
         }
     }
 }
+
+export let CompraMongoDao = new compraMongoDao()
