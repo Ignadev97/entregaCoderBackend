@@ -100,6 +100,16 @@ export default class cartController {
     try {
       const { cid, pid } = req.params;
 
+
+      console.log(req.user)
+
+
+      if(req.user.cart != cid){
+        return res
+        .status(403)
+        .json({ error: "El id de carrito proporcionado no corresponde al usuario logueado" });
+      }
+
       let carrito = await carritoService.obtenerCarritosPorId(cid);
 
       if (!carrito) {
