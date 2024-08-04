@@ -55,6 +55,13 @@ export default class cartController {
             "El carrito no corresponde al usuario logueado. Por favor verificar.",
         });
       }
+
+      if(req.user.role = 'premium' && req.user.cart == cid ) {
+        return res.status(403).json({
+          message:
+            "El usuario con rol premium no está autorizado a agregar productos a su propio carrito.",
+        });
+      }
       
       
       let productoValidado = await productoService.obtenerProductoPorId(productId)
@@ -209,6 +216,12 @@ export default class cartController {
     try {
       const { cid } = req.params;
 
+      if(req.user.cart != cid){
+        return res
+        .status(403)
+        .json({ error: "El id de carrito proporcionado no corresponde al usuario logueado" });
+      }
+
       let carrito = await carritoService.obtenerCarritosPorId(cid);
 
       if (!carrito) {
@@ -221,7 +234,7 @@ export default class cartController {
 
       res
         .status(200)
-        .json({ message: "¡los productso del carrito se removieron con éxito!", carrito });
+        .json({ message: "¡los productos del carrito se removieron con éxito!", carrito });
     } catch (err) {
       logger.error("Error al eliminar el carrito:", err);
       res
