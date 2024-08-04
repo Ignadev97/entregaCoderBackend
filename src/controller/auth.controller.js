@@ -17,7 +17,7 @@ export default class authController {
         .json({ message: "faltan datos. Por favor complete todos los campos" });
     }
 
-    let existe = await userService.obtenerUsuarioBy({ email });
+    let existe = await userService.obtenerUsuarioByFiltro({ email });
 
     if (existe) {
       return res
@@ -70,7 +70,7 @@ export default class authController {
     }
 
     try {
-      let usuario = await userService.obtenerUsuarioBy({ email });
+      let usuario = await userService.obtenerUsuarioByFiltro({ email });
 
       validaPassword(usuario, password);
 
@@ -127,7 +127,7 @@ export default class authController {
   static recupero01 = async (req, res) => {
     let { email } = req.body;
 
-    let usuario = await userService.obtenerUsuarioBy({ email });
+    let usuario = await userService.obtenerUsuarioByFiltro({ email });
 
     if (!usuario) {
       res.status(500).json(`no existe usuario con email ${email}`);
@@ -215,7 +215,7 @@ export default class authController {
     if (mailUsuario) {
       try {
         
-        let usuario = await userService.obtenerUsuarioBy({email:mailUsuario})
+        let usuario = await userService.obtenerUsuarioByFiltro({email:mailUsuario})
         console.log(usuario)
 
         await userService.actualizarUsuario({email:usuario.email}, {password:password})

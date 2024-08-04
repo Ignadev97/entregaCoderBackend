@@ -9,7 +9,7 @@ export class authMongoDAO {
     }
   };
 
-  getBy = async (filtro) => {
+  getByFilter = async (filtro) => {
     try {
       return await modeloUsers.findOne(filtro).lean();
     } catch (err) {
@@ -17,6 +17,13 @@ export class authMongoDAO {
     }
   };
 
+  getById = async (filtro) => {
+    try {
+      return await modeloUsers.findById(filtro).lean();
+    } catch (err) {
+      console.log("error inesperado. Detalle:", err.message);
+    }
+  };
   updateUser = async (filtro, actualizacion) => {
     try {
       return await modeloUsers.updateOne(filtro, actualizacion)

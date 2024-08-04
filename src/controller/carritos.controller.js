@@ -132,7 +132,7 @@ export default class cartController {
 
       
       let carrito = await carritoService.obtenerCarritosPorId(cid)
-      let user = await userService.obtenerUsuarioBy(uid)
+      let user = await userService.obtenerUsuarioById(uid)
       
       
       if (!carrito) {
