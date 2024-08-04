@@ -63,6 +63,7 @@ export default class authController {
   static login = async (req, res) => {
     let { email, password } = req.body;
 
+
     if (!email || !password) {
       return res
         .status(400)
@@ -72,16 +73,17 @@ export default class authController {
     try {
       let usuario = await userService.obtenerUsuarioByFiltro({ email });
 
-      validaPassword(usuario, password);
-
+      
+      
       if (!usuario) {
         return res.status(500).json({ message: "Credenciales incorrectas" });
       }
-
+      
       if (!validaPassword(usuario, password)) {
         return res.status(400).json({ message: "Credenciales incorrectas" });
       }
-
+      
+      validaPassword(usuario, password);
       usuario = { ...usuario };
       delete usuario.password;
 
