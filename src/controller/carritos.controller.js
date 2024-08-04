@@ -30,9 +30,11 @@ export default class cartController {
 
   static addProductsToCart = async (req, res) => {
     try {
+    
       let { cid } = req.params       
       let { productId } = req.body;
 
+    
       if (!productId) {
         return res.status(400).json({
           message:
@@ -44,6 +46,13 @@ export default class cartController {
         return res.status(400).json({
           message:
             "no se ha proporcionado un id de carrito válido. Por favor verificar.",
+        });
+      }
+
+      if(req.user.cart != cid){
+        return res.status(400).json({
+          message:
+            "El carrito no corresponde al usuario logueado. Por favor verificar.",
         });
       }
       

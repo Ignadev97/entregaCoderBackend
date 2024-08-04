@@ -2,7 +2,7 @@ import { cartMongoDAO } from "../../src/dao/mongo/cartMongoDAO.js";
 import { expect } from "chai";
 import { describe, it, before, after} from "mocha";
 import mongoose from "mongoose";
-import config from "../../../DecimoSeptimaEntrega/src/config/config.js";
+import config from "../../src/config/config.js";
 
 try {
   await mongoose.connect(config.MONGO_URL, { dbName: config.DB_NAME });

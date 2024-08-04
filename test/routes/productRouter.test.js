@@ -4,7 +4,7 @@ import { describe, it } from "mocha";
 import mongoose from "mongoose";
 import supertest from "supertest";
 
-import config from "../../../DecimoSeptimaEntrega/src/config/config.js";
+import config from "../../src/config/config.js"
 
 const requester = supertest(`http://localhost:${config.PORT}`);
 
@@ -25,17 +25,6 @@ describe("pruebas router de productos", async function () {
 
   let productoCreadoId;
 
-//   after(async () => {
-//     try {
-//         await mongoose.connection
-//           .collection("products")
-//           .deleteMany({ title: "producto ejemplo" });
-
-//       console.log("paso por aquó");
-//     } catch (err) {
-//       console.log("no se pudo borrar el objeto");
-//     }
-//   });
 
   it("la ruta /api/products con el método GET debe retornar el HTML con la información de los productos con los límites y parámetros indicados por el cliente", async () => {
     let mockQuery = { query: {}, limite: 5, pagina: 1 };

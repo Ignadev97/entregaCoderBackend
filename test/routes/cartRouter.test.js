@@ -4,7 +4,7 @@ import { describe, it } from "mocha";
 import mongoose from "mongoose";
 import supertest from "supertest";
 
-import config from "../../../DecimoSeptimaEntrega/src/config/config.js";
+import config from "../../src/config/config.js";
 
 const requester = supertest(`http://localhost:${config.PORT}`);
 

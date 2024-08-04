@@ -1,8 +1,9 @@
-import { productMongoDAO } from "../../../DecimoSeptimaEntrega/src/dao/mongo/productMongoDAO.js";
+
+import { productMongoDAO } from "../../src/dao/mongo/productMongoDAO.js";
 import { expect } from "chai";
 import { describe, it } from "mocha";
 import mongoose from "mongoose";
-import config from "../../../DecimoSeptimaEntrega/src/config/config.js";
+import config from "../../src/config/config.js";
 
 
 try {
