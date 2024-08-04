@@ -79,6 +79,7 @@ export default class productController {
 
 
 static addProduct = async (req, res) => {
+
   let { title, description, price, code, stock, owner } = req.body;
 
   if (!title || !price || !code || !stock) {

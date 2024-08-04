@@ -47,13 +47,10 @@ app.set("views", path.join(__dirname, "../views"))
 app.use(express.static(path.join(__dirname, '../public')))  //middleware para servir archivos estáticos  
 
 
-// meanejador de errores a nivel aplicación. 
-app.use(handleError)
 
 app.get('/', (req, res) => {
     res.status(200).render("inicio")
-    })
-    
+})
 //winston
 app.use(midLog)
     
@@ -86,6 +83,10 @@ app.use('/', viewRouter)
 
 //sgaggerui
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(spec))
+
+// meanejador de errores a nivel aplicación. 
+app.use(handleError)
+
 
 
 const server = app.listen(PORT, () => {
