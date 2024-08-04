@@ -15,7 +15,7 @@ class UsuariosService {
 
   async obtenerUsuarioByFiltro(filtro) {
     try {
-      return await this.dao.getBy(filtro);
+      return await this.dao.getByFilter(filtro);
     } catch (error) {
       console.error("Error al obtener usuario por filtro:", error);
     }
@@ -23,7 +23,7 @@ class UsuariosService {
 
   async obtenerUsuarioById(id) {
     try {
-      return await this.dao.getBy(id);
+      return await this.dao.getById(id);
     } catch (error) {
       console.error("Error al obtener usuario por filtro:", error);
     }
