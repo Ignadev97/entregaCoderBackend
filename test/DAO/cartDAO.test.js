@@ -1,4 +1,5 @@
 import { cartMongoDAO } from "../../src/dao/mongo/cartMongoDAO.js";
+import { productMongoDAO } from "../../src/dao/mongo/productMongoDAO.js";
 import { expect } from "chai";
 import { describe, it, before, after} from "mocha";
 import mongoose from "mongoose";
@@ -25,10 +26,11 @@ describe("Prueba sobre cartDAO", async function () {
   });
 
   it("Debe crear un carrito vacío y guardarlo en la base de datos", async function () {
-    let carritoVacioMock = { carrito: { products: [{ mensaje: 'esto es una prueba' }] } };
+    let carritoVacioMock = {carrito:{products:[]}};
 
     
     let resultado= await this.cartDAO.addCart(carritoVacioMock)
+  
     
     expect(resultado).to.be.an('object')
     expect(resultado._id).to.be.ok
@@ -39,14 +41,11 @@ describe("Prueba sobre cartDAO", async function () {
 
   
 
-  it('Debe agregar los productos indicados en los parámetros al carrito con el id que corresponda', async function () {
-
-    const productosMock = [
-      { product: new mongoose.Types.ObjectId('6605d823eb87395f832e1f45') },
-      { product: new mongoose.Types.ObjectId('6605d823eb87395f832e1f44') }
-    ];
+  it('Debe agregar un producto al carrito', async function () {
+      
+    let mockBody = {productId:"66ac4051d465825cc1fde553"}
     
-    let carritoConProducts = await this.cartDAO.addProductToCart(carritoCreadoId, productosMock);
+    let carritoConProducts = await this.cartDAO.addProductToCart(carritoCreadoId, mockBody);
 
     // Expect para la estructura general del objeto
     expect(carritoConProducts).to.be.an('object');

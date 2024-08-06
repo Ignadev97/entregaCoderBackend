@@ -56,7 +56,9 @@ export default class cartController {
         });
       }
 
-      if(req.user.role = 'premium' && req.user.cart == cid ) {
+      console.log(req.user.role)
+
+      if(req.user.role == 'premium' ) {
         return res.status(403).json({
           message:
             "El usuario con rol premium no está autorizado a agregar productos a su propio carrito.",

@@ -24,6 +24,16 @@ describe("pruebas del router de carritos", async function () {
   this.timeout(5000);
 
   let carritoCreadoId;
+  let cookieLogin 
+ 
+  before(async () => {
+    const res = await requester.post('/api/sessions/login').send({
+      email:"nachorfs@gmail.com",
+      password:"123"
+      })
+      
+    cookieLogin = res.headers['set-cookie'][0]
+  })
 
   after(async () => {
     try {
@@ -35,7 +45,7 @@ describe("pruebas del router de carritos", async function () {
     }
   });
 
-  it("la ruta /api/carts con el método post debería crear un carrito vacío y enviar un mensaje exitoso en formato json", async () => {
+  it("la ruta /api/cart con el método post debería crear un carrito vacío y enviar un mensaje exitoso en formato json", async () => {
     let mockCarrito = { carrito: { products: [] } };
 
     let { body, status, ok, headers } = await requester
@@ -63,17 +73,17 @@ describe("pruebas del router de carritos", async function () {
     carritoCreadoId = body.carritoCreado._id;
   });
 
-  it("la ruta /api/carts/:cid con el método post debe agregar los productos pasados por body al carrito correspondiente al id indicado en la query", async () => {
-    const productosMock = {
-      products: [
-        { product: new mongoose.Types.ObjectId("6605d823eb87395f832e1f45") },
-        { product: new mongoose.Types.ObjectId("6605d823eb87395f832e1f44") },
-      ],
-    };
+  it("la ruta /api/cart/:cid con el método post debe agregar los productos pasados por body al carrito correspondiente al id indicado en la query", async () => {
+    let mockBody = {productId:"66ac4051d465825cc1fde553"}
 
-    let { body, status, ok, headers } = await requester
+    let { body, status, ok, headers, text } = await requester
       .post(`/api/cart/${carritoCreadoId}`)
-      .send(productosMock);
+      .set('cookieLogin', cookieLogin)
+      .send(mockBody);
+
+      
+      
+    console.log('este es el status de /api/cart/cid', status, body, text)
 
     expect(status).to.equal(200);
     expect(ok).to.be.true;
